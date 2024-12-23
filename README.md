@@ -17,6 +17,8 @@ without implementing the buffer managment from the original function.
 - `%X` Prints a number in hexadecimal (base 16) uppercase format.
 - `%%` Prints a percent sign.
 
+In this project we are allowed to use libft.
+
 ### Final Grade
 
 ![image](https://github.com/user-attachments/assets/e37d5548-1bb2-4a2d-af7e-a1e5e53730a6)
