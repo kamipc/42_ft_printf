@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpinho-c <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: cpinho-c <cpinho-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:55:53 by cpinho-c          #+#    #+#              #
-#    Updated: 2024/12/11 14:56:08 by cpinho-c         ###   ########.fr        #
+#    Updated: 2026/03/05 22:06:34 by cpinho-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,27 +19,35 @@ SRCS = ft_printf.c printf_char.c printf_digits.c printf_str.c \
 	
 OBJS = $(SRCS:.c=.o)
 RM = rm -rf
-LIBFT = libft/libft.a
+LIBFT_DIR = ./libft
+LIBFT = LIBFT_DIR/libft.a
+LIBFT_GIT = https://github.com/kamipc/42_Libft.git
 
 .SILENT:
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
+$(LIBFT):
+	@if [ ! -d "$(LIBFT_DIR)" ]; then \
+	echo "Cloning libft (ORIG_PROJECT branch)..."; \
+	git clone -b ORIG_PROJECT $(LIBFT_GIT) $(LIBFT_DIR); \
+	fi
+	$(MAKE) -C $(LIBFT_DIR)
+	echo "Libft compiled successfully!"
+	
+$(NAME): $(LIBFT) $(OBJS)
 	$(AR) $(NAME) $(OBJS) libft/*.o
-
-$(LIBFT): libft
-	$(MAKE) -C libft
+	echo "$(NAME) compiled successfuly!"
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS) 
-	$(MAKE) clean -C libft
+	@if [ -d "$(LIBFT_DIR)" ]; then $(MAKE) -C $(LIBFT_DIR) clean; fi
 
 fclean: clean
 	$(RM) $(NAME)
-	$(MAKE) fclean -C libft
+	@if [ -d "$(LIBFT_DIR)" ]; then $(MAKE) -C $(LIBFT_DIR) fclean; fi
 
 re: fclean all
