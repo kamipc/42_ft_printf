@@ -6,7 +6,7 @@
 #    By: cpinho-c <cpinho-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 14:55:53 by cpinho-c          #+#    #+#              #
-#    Updated: 2026/03/05 22:06:34 by cpinho-c         ###   ########.fr        #
+#    Updated: 2026/03/05 22:37:17 by cpinho-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS = ft_printf.c printf_char.c printf_digits.c printf_str.c \
 OBJS = $(SRCS:.c=.o)
 RM = rm -rf
 LIBFT_DIR = ./libft
-LIBFT = LIBFT_DIR/libft.a
+LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_GIT = https://github.com/kamipc/42_Libft.git
 
 .SILENT:
