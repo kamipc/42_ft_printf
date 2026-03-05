@@ -1,3 +1,5 @@
+*This project has been created as part of the 42 curriculum by cpinho-c.*
+
 # Project Ft_printf
 
 ## Module 1 of 42 Common Core
